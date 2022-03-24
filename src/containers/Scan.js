@@ -35,13 +35,17 @@ const Scan = () => {
   const onReading = ({ message, serialNumber }) => {
     setSerialNumber(serialNumber);
     for (const record of message.records) {
+      let textDecoder;
       switch (record.recordType) {
         case "text":
-          const textDecoder = new TextDecoder(record.encoding);
+          textDecoder = new TextDecoder(record.encoding);
           setMessage(textDecoder.decode(record.data));
           break;
         case "url":
           // TODO: Read URL record with record data.
+          textDecoder = new TextDecoder(record.encoding);
+          setMessage(textDecoder.decode(record.data));
+          break;
           break;
         default:
         // TODO: Handle other records with record data.
@@ -59,7 +63,10 @@ const Scan = () => {
         <div>
           <p>Serial Number: {serialNumber}</p>
           <p>
-            Message: <a href={message}>{message}</a>
+            Message:
+            <a href={message} target="_blank">
+              {message}
+            </a>
           </p>
         </div>
       ) : (
