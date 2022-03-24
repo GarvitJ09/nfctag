@@ -59,7 +59,7 @@ const Scan = () => {
         <div>
           <p>Serial Number: {serialNumber}</p>
           <p>
-            Message: <a href={message} />
+            Message: <a href={message}>{message}</a>
           </p>
         </div>
       ) : (
