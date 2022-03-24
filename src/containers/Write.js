@@ -10,6 +10,7 @@ const Write = () => {
       await ndef.write({ records: [{ recordType: "text", data: message }] });
       alert(`Value Saved!`);
     } catch (error) {
+      alert(error);
       console.log(error);
     }
   };
